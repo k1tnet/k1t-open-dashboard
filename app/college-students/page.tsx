@@ -24,6 +24,11 @@ export default function Dashboard() {
   if (!data)
     return <div className="text-center py-10 text-gray-500">Loading...</div>;
 
+  const dataKeyMapping: Record<string, string> = {
+    male: "男性",
+    female: "女性",
+  }
+
   return (
     <div className="p-8 space-y-8 bg-gray-100 dark:bg-gray-900 min-h-screen text-black dark:text-white">
       {/* KPI Cards */}
@@ -57,6 +62,7 @@ export default function Dashboard() {
       {/* 学科別 入学者数（男女別） */}
       <BarChartComponent
         data={data.admission_results.departments}
+        dataKeyMapping={dataKeyMapping}
         dataKeys={["male", "female"]}
         title="学科別 入学者数（男女別）"
         xKey="department"
