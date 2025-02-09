@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [data, setData] = useState<AdmissionResults | null>(null);
 
   useEffect(() => {
-    fetch("/data/college-students.json")
+    fetch("/data/college-students-2024.json")
       .then((res) => res.json())
       .then((json: AdmissionResults) => setData(json)); // 型適用
   }, []);
