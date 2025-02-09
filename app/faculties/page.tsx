@@ -16,7 +16,7 @@ export default function Dashboard() {
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    fetch("/data/faculty.json")
+    fetch("/data/faculty-2024.json")
       .then((res) => res.json())
       .then((json) => setData(json));
   }, []);
