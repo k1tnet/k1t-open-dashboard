@@ -42,14 +42,14 @@ export default function Dashboard() {
           icon={
             <AcademicCapIcon className="h-10 w-10 text-green-500 dark:text-green-300" />
           }
-          title="男子入学者数"
+          title="男性入学者数"
           value={data.admission_results.total.male}
         />
         <KpiCard
           icon={
             <UserGroupIcon className="h-10 w-10 text-pink-500 dark:text-pink-300" />
           }
-          title="女子入学者数"
+          title="女性入学者数"
           value={data.admission_results.total.female}
         />
       </div>
@@ -66,8 +66,8 @@ export default function Dashboard() {
       {/* 男女比率（全体） */}
       <PieChartComponent
         data={[
-          { name: "男子", value: data.admission_results.total.male },
-          { name: "女子", value: data.admission_results.total.female },
+          { name: "男性", value: data.admission_results.total.male },
+          { name: "女性", value: data.admission_results.total.female },
         ]}
         title="全体の男女比率"
       />
