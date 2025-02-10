@@ -3,6 +3,7 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "K1T Open Dashboard",
   description: "K1T Open Dashboard",
+  yearLists: ["2023", "2024"],
   navItems: [
     {
       label: "ホーム",
