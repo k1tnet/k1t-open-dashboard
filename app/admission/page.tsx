@@ -11,6 +11,7 @@ import {
 import KpiCard from "@/components/kpi-card";
 import BarChartComponent from "@/components/bar-chart";
 import PieChartComponent from "@/components/pie-chart";
+import DataTable from "@/components/data-table";
 
 export default function AdmissionDashboard() {
   const [data, setData] = useState<any>(null);
@@ -93,10 +94,16 @@ export default function AdmissionDashboard() {
       />
 
       {/* 地域別在籍者数 */}
-      <PieChartComponent
+      <DataTable
+        columns={[
+          { key: "region", label: "地域" },
+          { key: "prefecture", label: "都道府県" },
+          { key: "current_students", label: "在籍者数" },
+        ]}
         data={data.regions.map((region: any) => ({
-          name: region.region,
-          value: region.current_students,
+          region: region.region,
+          prefecture: region.prefecture,
+          current_students: region.current_students,
         }))}
         title="地域別 在籍者数"
       />
@@ -104,6 +111,10 @@ export default function AdmissionDashboard() {
       {/* 特別奨学生の地域別分布 */}
       <BarChartComponent
         data={data.regions}
+        dataKeyMapping={{
+          special_scholarship_fellow: "スカラシップフェロー",
+          special_scholarship_member: "スカラシップメンバー",
+        }}
         dataKeys={["special_scholarship_fellow", "special_scholarship_member"]}
         title="特別奨学生の地域別分布"
         xKey="prefecture"
