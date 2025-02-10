@@ -10,7 +10,6 @@ import {
 
 import KpiCard from "@/components/kpi-card";
 import BarChartComponent from "@/components/bar-chart";
-import PieChartComponent from "@/components/pie-chart";
 import DataTable from "@/components/data-table";
 
 export default function AdmissionDashboard() {
@@ -69,6 +68,9 @@ export default function AdmissionDashboard() {
       {/* 志願者データ */}
       <BarChartComponent
         data={data.regions}
+        dataKeyMapping={{
+          applicants: "志願者数",
+        }}
         dataKeys={["applicants"]}
         title="都道府県別 志願者数"
         xKey="prefecture"
@@ -78,6 +80,9 @@ export default function AdmissionDashboard() {
       {/* 合格者データ */}
       <BarChartComponent
         data={data.regions}
+        dataKeyMapping={{
+          admitted: "合格者数",
+        }}
         dataKeys={["admitted"]}
         title="都道府県別 合格者数"
         xKey="prefecture"
@@ -87,6 +92,9 @@ export default function AdmissionDashboard() {
       {/* 入学者データ */}
       <BarChartComponent
         data={data.regions}
+        dataKeyMapping={{
+          enrolled: "入学者数",
+        }}
         dataKeys={["enrolled"]}
         title="都道府県別 入学者数"
         xKey="prefecture"
