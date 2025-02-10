@@ -75,8 +75,8 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
           >
             <XAxis
               dataKey={xKey}
-              tick={renderCustomXAxisTick}
               interval={0}
+              tick={renderCustomXAxisTick}
               tickMargin={16}
             />
             <YAxis
