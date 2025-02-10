@@ -59,44 +59,51 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
     );
   };
 
+  // データ数に応じてチャートの最小幅を計算 (1データあたり50px～80px程度を目安)
+  const minChartWidth = data.length * 80;
+
   return (
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
+    // (1) このラッパに overflow-x: auto を指定
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow overflow-x-auto">
       <h2 className="text-lg font-semibold mb-4">{title}</h2>
-      <ResponsiveContainer height={400 + extraHeight} width="100%">
-        <BarChart
-          data={data}
-          margin={{ left: 60, right: 30, bottom: extraHeight }}
-        >
-          <XAxis
-            dataKey={xKey}
-            tick={renderCustomXAxisTick}
-            interval={0}   // ← ラベルをすべて描画
-            tickMargin={16} // ← 回転した時の余白を確保
-          />
-          <YAxis
-            label={{
-              value: yLabel,
-              angle: -90,
-              position: "insideLeft",
-              dy: -5,
-            }}
-          />
-          <Tooltip
-            formatter={(value, name) => [
-              value,
-              dataKeyMapping[name as string] || name,
-            ]}
-          />
-          {dataKeys.map((key, index) => (
-            <Bar
-              key={key}
-              dataKey={key}
-              fill={colors[index % colors.length]}
-              name={dataKeyMapping[key] || key}
+      {/* (2) ResponsiveContainer を内包する要素に minWidth を指定して横スクロールを有効に */}
+      <div style={{ minWidth: minChartWidth }}>
+        <ResponsiveContainer height={400 + extraHeight} width="100%">
+          <BarChart
+            data={data}
+            margin={{ left: 60, right: 30, bottom: extraHeight }}
+          >
+            <XAxis
+              dataKey={xKey}
+              tick={renderCustomXAxisTick}
+              interval={0}
+              tickMargin={16}
             />
-          ))}
-        </BarChart>
-      </ResponsiveContainer>
+            <YAxis
+              label={{
+                value: yLabel,
+                angle: -90,
+                position: "insideLeft",
+                dy: -5,
+              }}
+            />
+            <Tooltip
+              formatter={(value, name) => [
+                value,
+                dataKeyMapping[name as string] || name,
+              ]}
+            />
+            {dataKeys.map((key, index) => (
+              <Bar
+                key={key}
+                dataKey={key}
+                fill={colors[index % colors.length]}
+                name={dataKeyMapping[key] || key}
+              />
+            ))}
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
