@@ -91,6 +91,9 @@ export default function Dashboard() {
       <PieChartComponent data={data.staff.by_gender} title="性別別 職員構成" />
       <BarChartComponent
         data={data.staff.by_age}
+        dataKeyMapping={{
+          value: "人数",
+        }}
         dataKeys={["value"]}
         title="年齢層別 職員構成"
         xKey="age_range"
