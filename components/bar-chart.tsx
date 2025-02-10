@@ -47,7 +47,7 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
       <g transform={`translate(${x},${y})`}>
         <text
           dy={16}
-          fontSize={12}
+          fontSize={11}
           textAnchor="end"
           transform={`rotate(${labelAngle})`}
           x={0}
