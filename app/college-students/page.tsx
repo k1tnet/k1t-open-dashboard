@@ -27,7 +27,7 @@ export default function Dashboard() {
   const dataKeyMapping: Record<string, string> = {
     male: "男性",
     female: "女性",
-  }
+  };
 
   return (
     <div className="p-8 space-y-8 bg-gray-100 dark:bg-gray-900 min-h-screen text-black dark:text-white">
