@@ -6,8 +6,8 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Text,
 } from "recharts";
+
 interface BarChartComponentProps {
   title: string;
   data: any[];
@@ -16,7 +16,7 @@ interface BarChartComponentProps {
   colors?: string[];
   yLabel?: string;
   nameMapping?: Record<string, string>;
-  dataKeyMapping?: Record<string, string>; // 追加: "male" → "男性" などのマッピング
+  dataKeyMapping?: Record<string, string>;
 }
 
 const BarChartComponent: FC<BarChartComponentProps> = ({
@@ -27,7 +27,7 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
   colors = ["#8884d8", "#82ca9d", "#ffc658"],
   yLabel = "人数",
   nameMapping = {},
-  dataKeyMapping = {}, // デフォルトはそのままのキー
+  dataKeyMapping = {},
 }) => {
   // X軸のラベルの最大長を取得
   const longestLabelLength = Math.max(
@@ -45,14 +45,16 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
 
     return (
       <g transform={`translate(${x},${y})`}>
-        <Text
-          dy={10}
+        <text
+          dy={16}
           fontSize={12}
           textAnchor="end"
           transform={`rotate(${labelAngle})`}
+          x={0}
+          y={0}
         >
           {label}
-        </Text>
+        </text>
       </g>
     );
   };
@@ -65,7 +67,12 @@ const BarChartComponent: FC<BarChartComponentProps> = ({
           data={data}
           margin={{ left: 60, right: 30, bottom: extraHeight }}
         >
-          <XAxis dataKey={xKey} tick={renderCustomXAxisTick} />
+          <XAxis
+            dataKey={xKey}
+            tick={renderCustomXAxisTick}
+            interval={0}   // ← ラベルをすべて描画
+            tickMargin={16} // ← 回転した時の余白を確保
+          />
           <YAxis
             label={{
               value: yLabel,
