@@ -1,0 +1,82 @@
+{
+    "admission_results": {
+        "departments": [
+            {
+                "faculty": "工学部",
+                "department": "機械工学科",
+                "male": 162,
+                "female": 5
+            },
+            {
+                "faculty": "工学部",
+                "department": "航空システム工学科",
+                "male": 42,
+                "female": 2
+            },
+            {
+                "faculty": "工学部",
+                "department": "ロボティクス学科",
+                "male": 93,
+                "female": 3
+            },
+            {
+                "faculty": "工学部",
+                "department": "電気電子工学科",
+                "male": 164,
+                "female": 6
+            },
+            {
+                "faculty": "工学部",
+                "department": "情報工学科",
+                "male": 280,
+                "female": 16
+            },
+            {
+                "faculty": "工学部",
+                "department": "環境土木工学科",
+                "male": 75,
+                "female": 8
+            },
+            {
+                "faculty": "情報フロンティア学部",
+                "department": "メディア情報学科",
+                "male": 148,
+                "female": 32
+            },
+            {
+                "faculty": "情報フロンティア学部",
+                "department": "経営情報学科",
+                "male": 63,
+                "female": 7
+            },
+            {
+                "faculty": "情報フロンティア学部",
+                "department": "心理科学科",
+                "male": 21,
+                "female": 19
+            },
+            {
+                "faculty": "建築学部",
+                "department": "建築学科",
+                "male": 181,
+                "female": 57
+            },
+            {
+                "faculty": "バイオ・化学部",
+                "department": "応用化学科",
+                "male": 40,
+                "female": 26
+            },
+            {
+                "faculty": "バイオ・化学部",
+                "department": "応用バイオ学科",
+                "male": 24,
+                "female": 30
+            }
+        ],
+        "total": {
+            "male": 1293,
+            "female": 211
+        }
+    }
+}
