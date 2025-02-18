@@ -1,0 +1,38 @@
+name: Staging
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  deploy-preview:
+    runs-on: ubuntu-latest
+    environment:
+      name: "preview"
+      url: ${{ steps.deploy.outputs.url }}
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v3
+
+      - name: Bunのインストール
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: パッケージのインストール
+        run: bun install
+
+      - name: Vercel CLIのインストール
+        run: bun add -g vercel@latest
+
+      - name: Vercelからプレビュー環境用設定を取得
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: プレビュー用ビルド
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 成果物をプレビュー環境でデプロイ
+        id: deploy
+        run: echo "url=$(vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }})" >> $GITHUB_OUTPUT
