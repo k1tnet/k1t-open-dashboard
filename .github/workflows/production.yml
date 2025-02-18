@@ -1,0 +1,36 @@
+name: Production
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment:
+      name: "production"
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v3
+
+      - name: Bunのインストール
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: パッケージのインストール
+        run: bun install
+
+      - name: Vercel CLIのインストール
+        run: bun add -g vercel@latest
+
+      - name: Vercelから本番環境用設定を取得
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 本番用ビルド
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+
+      - name: 成果物を本番環境でデプロイ
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
